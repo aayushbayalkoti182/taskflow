@@ -10,17 +10,30 @@ function TaskItem({
   const [editTitle, setEditTitle] = useState(task.title);
 
   function handleEdit() {
-    if (editTitle.trim() === "") {
+    const trimmedTitle = editTitle.trim();
+
+    if (trimmedTitle === "") {
       return;
     }
 
-    onEditTask(task.id, editTitle.trim());
+    onEditTask(task.id, trimmedTitle);
+    setEditTitle(trimmedTitle);
     setIsEditing(false);
   }
 
   function handleCancel() {
     setEditTitle(task.title);
     setIsEditing(false);
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      handleEdit();
+    }
+
+    if (event.key === "Escape") {
+      handleCancel();
+    }
   }
 
   return (
@@ -38,11 +51,7 @@ function TaskItem({
             onChange={(event) =>
               setEditTitle(event.target.value)
             }
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                handleEdit();
-              }
-            }}
+            onKeyDown={handleKeyDown}
           />
 
           <button
