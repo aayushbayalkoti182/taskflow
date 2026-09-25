@@ -27,45 +27,43 @@ function App() {
       completed: false
     };
 
-    setTasks([...tasks, newTask]);
+    setTasks((previousTasks) => [...previousTasks, newTask]);
   }
 
   function toggleTask(id) {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          completed: !task.completed
-        };
-      }
+    setTasks((previousTasks) =>
+      previousTasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            completed: !task.completed
+          };
+        }
 
-      return task;
-    });
-
-    setTasks(updatedTasks);
+        return task;
+      })
+    );
   }
 
   function deleteTask(id) {
-    const updatedTasks = tasks.filter(
-      (task) => task.id !== id
+    setTasks((previousTasks) =>
+      previousTasks.filter((task) => task.id !== id)
     );
-
-    setTasks(updatedTasks);
   }
 
   function editTask(id, newTitle) {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          title: newTitle
-        };
-      }
+    setTasks((previousTasks) =>
+      previousTasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            title: newTitle
+          };
+        }
 
-      return task;
-    });
-
-    setTasks(updatedTasks);
+        return task;
+      })
+    );
   }
 
   let filteredTasks = tasks;
