@@ -25,6 +25,8 @@ function TaskForm({ onAddTask }) {
         aria-label="Task title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
+        maxLength={100}
+        required
       />
 
       <select
