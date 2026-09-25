@@ -10,7 +10,17 @@ function App() {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
 
-    return savedTasks ? JSON.parse(savedTasks) : [];
+    if (!savedTasks) {
+      return [];
+    }
+
+    try {
+      const parsedTasks = JSON.parse(savedTasks);
+
+      return Array.isArray(parsedTasks) ? parsedTasks : [];
+    } catch {
+      return [];
+    }
   });
 
   const [filter, setFilter] = useState("all");
