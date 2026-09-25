@@ -22,15 +22,15 @@ function TaskForm({ onAddTask }) {
       <input
         type="text"
         placeholder="Enter a task..."
+        aria-label="Task title"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
 
       <select
+        aria-label="Task category"
         value={category}
-        onChange={(event) =>
-          setCategory(event.target.value)
-        }
+        onChange={(event) => setCategory(event.target.value)}
       >
         <option value="General">General</option>
         <option value="Study">Study</option>

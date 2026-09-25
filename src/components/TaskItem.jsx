@@ -33,6 +33,7 @@ function TaskItem({
         <div className="edit-area">
           <input
             type="text"
+            aria-label="Edit task title"
             value={editTitle}
             onChange={(event) =>
               setEditTitle(event.target.value)
@@ -45,6 +46,7 @@ function TaskItem({
           />
 
           <button
+            type="button"
             className="save-button"
             onClick={handleEdit}
           >
@@ -52,6 +54,7 @@ function TaskItem({
           </button>
 
           <button
+            type="button"
             className="cancel-button"
             onClick={handleCancel}
           >
@@ -75,24 +78,22 @@ function TaskItem({
                     : "active-status"
                 }`}
               >
-                {task.completed
-                  ? "Completed"
-                  : "Active"}
+                {task.completed ? "Completed" : "Active"}
               </span>
             </div>
           </div>
 
           <div className="task-actions">
             <button
+              type="button"
               className="complete-button"
               onClick={() => onToggleTask(task.id)}
             >
-              {task.completed
-                ? "Mark Active"
-                : "Complete"}
+              {task.completed ? "Mark Active" : "Complete"}
             </button>
 
             <button
+              type="button"
               className="edit-button"
               onClick={() => setIsEditing(true)}
             >
@@ -100,6 +101,7 @@ function TaskItem({
             </button>
 
             <button
+              type="button"
               className="delete-button"
               onClick={() => onDeleteTask(task.id)}
             >
